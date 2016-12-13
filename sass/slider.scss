@@ -1,0 +1,424 @@
+//==================================================================================================== DEVELOPER TOOLS
+@import "bootstrap-grid";
+@import "mixins";
+
+//====================================================================================================== FONT FAMILIES
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700&subset=latin,latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,700&subset=latin,latin-ext);
+$roboto : 'Roboto Slab', sans-serif;
+$lato : 'Lato', sans-serif;
+
+//========================================================================================================== FONT SIZE
+$font : 16px;
+
+//======================================================================================================= THEME COLORS
+$key-color: #e00f16;
+$white : #fff;
+$black : #000;
+$grey : #717171;
+$darkgrey : #414141;
+$subfair : #efefef;
+$subdark : #2f3339;
+
+//=================================================================================================== UNIVERSAL STYLES
+html{
+    padding: 0;
+    margin: 0;
+    max-width: 100vw;
+    overflow-x: hidden;
+    *{
+        box-sizing: border-box;
+    }
+}
+body{
+    margin: 0;
+    top: 0;
+    font-family: $lato;
+    min-width: 320px;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
+.button{
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    margin: 20px;
+    display: inline-block;
+    @include border-radius(2px);
+    color: $white;
+    font-size: 21px;
+    font-weight: 400;
+    white-space: nowrap;
+    @include transition(0.1s,ease-in);
+    &.filled{
+        background-color: $key-color;
+        &:hover{
+            background-color: $subdark;
+            cursor: pointer;
+        }
+    }
+    &.line{
+        border: 1px solid $white;
+        &:hover{
+            background-color: $white;
+            cursor: pointer;
+            color: $black;
+        }
+    }
+    &.line.red{
+        border: 1px solid $key-color;
+        background-color: $key-color;
+        @include box-shadow(4,7,18,darken($white,8%));
+        color: $white;
+        font-weight: 300;
+        @include transition(0.2s,ease-in);
+        &:hover{
+            background-color: $subdark;
+            @include box-shadow(2,5,5,darken($white,17%));
+            @include transform(scale(0.9));
+            border-color: $subdark;
+            cursor: pointer;
+        }
+    }
+}
+section#homeslider{
+    top: 0;
+    position: relative;
+    .main-slider-wrapper{
+        background-color: $darkgrey;
+        .about{
+            position: absolute;
+            top: 40vh;
+            left: 25%;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: rgba($white,0.6);
+            max-width: 45vw;
+            z-index: 35;
+            .note{
+                width: 100%;
+                position: relative;
+                left: 0;
+                color: $darkgrey;
+                font-size: 14px;
+                line-height: 20px;
+                letter-spacing: 1px;
+                font-style: italic;
+                text-align: left;
+                h2{
+                    font-size: 36px;
+                    color: $darkgrey;
+                    padding-bottom: 20px;
+                    margin-bottom: 25px;
+                    border-bottom: 0.5px solid $key-color;
+                    text-align: center;
+                    display: none;
+                    font-style: normal;
+                }
+                .note-continue{
+                    display: none;
+                }
+                .history{
+                    display: none;
+                }
+            }
+            .buttons{
+                position: relative;
+                margin-top: 30px;
+                float: left;
+                .button{
+                    width: 170px;
+                    height: 28px;
+                    text-align: center;
+                    line-height: 28px;
+                    margin: 0;
+                    @include border-radius(2px);
+                    float: right;
+                    color: $key-color;
+                    font-size: 14px;
+                    font-weight: 300;
+                    white-space: nowrap;
+                    @include transition(0.3s,ease-in);
+                    &.filled{
+                        background-color: $key-color;
+                        border-bottom: none;
+                        color: $white;
+                        &:hover{
+                            background-color: $subdark;
+                            color: $white;
+                            cursor: pointer;
+                        }
+                    }
+                    &.line{
+                        border: 1px solid $subdark;
+                        color: $subdark;
+                        margin-left: 20px;
+                        &:hover{
+                            background-color: $subdark;
+                            color: $white;
+                            cursor: pointer;
+                        }
+                    }
+                    &.showhistory{
+                        display: none;
+                    }
+                }
+            }
+        }
+        .dots{
+            @include transition(0.5s, ease-in);
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            @include transform(translate(-50%,20%));
+            z-index: 40;
+            .dot{
+                @include circle-shaped(16px);
+                background-color: transparent;
+                border: 3px solid $key-color;
+                display: inline-block;
+                float: left;
+                margin: 0 10px;
+                cursor: pointer;
+                &.active{
+                    background-color: $key-color;
+                }
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+        .main-slider{
+            position: relative;
+            width: 100% !important;
+            height: 100vh !important;
+            min-height: 350px;
+            overflow-x: hidden !important;
+            box-sizing: border-box;
+            @include transition(0.5s, ease-in);
+            z-index: 20;
+            .slider-arrow-navi{
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                z-index: 51;
+                .arrow{
+                    position: relative;
+                    width: 40px;
+                    height: 40px;
+                    background-color: $key-color;
+                    color: $white;
+                    font-family: $lato;
+                    font-weight: 400;
+                    line-height: 40px;
+                    text-align: center;
+                    margin-left: 5px;
+                    display: inline-block;
+                }
+            }
+            ul.slider{
+                padding: 0;
+                margin: 0;
+                list-style: none;
+                @include absolute(0,0,0,0);
+                box-sizing: border-box;
+                height: 100%;
+                overflow: hidden;
+                display: block;
+                li.slider-item{
+                    .overlay{
+                        @include bg-gradient((rgba($white,1) 20%,rgba($white,0.15)));
+                        @include absolute(0,0,0,0);
+                    }
+                    @include bg-char(50%,50%,no-repeat,cover);
+                    width: 100vw;
+                    height: 100%;
+                    display: block;
+                    position: absolute;
+                    z-index: 20;
+                    &.active{z-index: 25}
+                    .slide-caption{
+                        display: inline-block;
+                        position: absolute;
+                        top: 40vh;
+                        right: 75%;
+                        padding: 0 5px;
+                        height: 200px;
+                        color: $subdark;
+                        font-family: $lato;
+                        z-index: 50;
+                        text-align: left;
+                        h1{
+                            margin: 6px 0;
+                            line-height: 42px;
+                            font-size: 42px;
+                            white-space: nowrap;
+                            text-align: right;
+                            font-weight: 300;
+                            border-right: 5px solid $key-color;
+                            padding-right: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 992px){
+    section#homeslider{
+        #top{
+            width: 100%;
+            .logo{
+                @include absolute(80px,auto,auto,50%);
+                width: 260px;
+            }
+        }
+        .main-slider-wrapper{
+            .about{
+                top: 30vh;
+                left: 20%;
+                max-width: 65vw;
+                padding: 20px;
+                .note{
+                    width: 100%;
+                }
+                .buttons{
+                    position: relative;
+                    display: block;
+                    margin: 20px auto 0 auto;
+                    .button{
+                        float: left;
+                        &.line{
+                            margin-left: 0;
+                        }
+                        &.filled{
+                            margin-left: 15px;
+                        }
+                    }
+                }
+            }
+            .main-slider{
+                ul.slider{
+                    li.slider-item{
+                        .slide-caption{
+                            top: 30vh;
+                            right: 80%;
+                            h1{
+                                font-size: 28px;
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}
+@media (max-width: 768px){
+    section#homeslider{
+        #top{
+            .logo{
+                @include absolute(60px,auto,auto,50%);
+                width: 230px;
+            }
+        }
+        .main-slider-wrapper{
+            .about{
+                top: 25vh;
+                left: 10%;
+                max-width: 80vw;
+                padding: 20px;
+                .note{
+                    width: 100%;
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+                .buttons{
+                    position: relative;
+                    display: block;
+                    margin: 15px auto 0 auto;
+                    .button{
+                        width: 140px;
+                        height: 24px;
+                        text-align: center;
+                        line-height: 24px;
+                        margin: 0;
+                        color: $key-color;
+                        font-size: 11px;
+                        &.line{
+                            margin-left: 0;
+                        }
+                        &.filled{
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+            .main-slider{
+                ul.slider{
+                    li.slider-item{
+                        .slide-caption{
+                            display: none;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}
+@media (max-width: 480px){
+    section#homeslider{
+        #top{
+            .logo{
+                @include absolute(60px,auto,auto,50%);
+                width: 180px;
+            }
+        }
+        .main-slider-wrapper{
+            .about{
+                top: 25vh;
+                left: 7%;
+                max-width: 86vw;
+                padding: 12px;
+                .note{
+                    width: 100%;
+                    font-size: 11px;
+                    line-height: 15px;
+                }
+                .buttons{
+                    position: relative;
+                    display: block;
+                    margin: 12px auto 0 auto;
+                    .button{
+                        width: 120px;
+                        height: 24px;
+                        text-align: center;
+                        line-height: 24px;
+                        margin: 0;
+                        color: $key-color;
+                        font-size: 11px;
+                        &.line{
+                            margin-left: 0;
+                        }
+                        &.filled{
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+            .main-slider{
+                ul.slider{
+                    li.slider-item{
+                        .slide-caption{
+                            display: none;
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+}
