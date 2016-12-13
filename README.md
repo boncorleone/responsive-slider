@@ -1,2 +1,3 @@
-# responsive-slider
-Fully responsive slider ready to install on your webpage.
+# Responsive Slider by Boncorleone
+
+Fully responsive and adjustable, simple jQuery slider ready to install on your webpage.
